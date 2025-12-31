@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CineVerse - Movie Details</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+<header>
+    <h1>CineVerse</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="upcoming.html">Upcoming</a>
+        <a href="profile.html">Profile</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Inception</h2>
+    <p>Category: Sci-Fi | Genre: Thriller</p>
+    <p>Box Office: $830M</p>
+    <p>Release Year: 2010</p>
+
+    <h3>Reviews</h3>
+    <div class="movie-card">
+        <label>Select your opinion:</label>
+        <select id="review-option" class="review-select" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="skip">Skip</option>
+            <option value="onetime">One Time</option>
+            <option value="recommend">Recommend</option>
+            <option value="cinema">Cinema</option>
+        </select>
+
+        <textarea id="review-text" placeholder="Write your review here..." required></textarea>
+        <button onclick="submitReview()">Submit Review</button>
+    </div>
+</div>
+
+<footer>
+    CineVerse © 2025 | All rights reserved
+</footer>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CineHub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>CineHub</h1>
+  <p>Where Cinephiles Meet Cinema</p>
+</header>
+
+<section class="movie-grid">
+
+  <div class="movie-card">
+    <img src="https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SL1178_.jpg" alt="Movie">
+    <h3>Inception</h3>
+
+    <div class="actions">
+      <button onclick="watchTrailer()">Trailer</button>
+    </div>
+
+    <div class="rating">
+      <button>SKIP</button>
+      <button>ONE TIME</button>
+      <button>RECOMMEND</button>
+      <button>CINEMA</button>
+    </div>
+  </div>
+
+  <div class="movie-card">
+    <img src="https://m.media-amazon.com/images/I/81t9c6p4yUL._AC_SL1500_.jpg" alt="Movie">
+    <h3>Interstellar</h3>
+
+    <div class="actions">
+      <button onclick="watchTrailer()">Trailer</button>
+    </div>
+
+    <div class="rating">
+      <button>SKIP</button>
+      <button>ONE TIME</button>
+      <button>RECOMMEND</button>
+      <button>CINEMA</button>
+    </div>
+  </div>
+
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
