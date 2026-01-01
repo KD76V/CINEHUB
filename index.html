@@ -2,87 +2,75 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CineHub | Movies & Series & Anime</title>
+<title>CineHub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-:root {
-  --bg: radial-gradient(1200px 600px at top, #15151c 0%, #0b0b10 45%, #050507 100%);
-  --card: #141417;
-  --text: #eaeaea;
-  --muted: #9a9a9a;
-  --accent: #e50914;
+:root{
+  --bg:#0b0b10;
+  --card:#15151c;
+  --text:#eaeaea;
+  --muted:#9a9a9a;
+  --accent:#e50914;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+*{margin:0;padding:0;box-sizing:border-box}
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: "Inter", system-ui, sans-serif;
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,sans-serif;
 }
 
-header {
-  padding: 24px;
-  border-bottom: 1px solid #1f1f1f;
+header{
+  padding:24px;
+  border-bottom:1px solid #1f1f1f;
 }
 
-header h1 {
-  font-size: 28px;
-  letter-spacing: 1px;
+header h1{
+  font-size:28px;
+  letter-spacing:1px;
+}
+header span{color:var(--accent)}
+header p{color:var(--muted);margin-top:6px;font-size:14px}
+
+main{padding:30px}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:28px;
 }
 
-header span { color: var(--accent); }
-
-header p {
-  margin-top: 6px;
-  color: var(--muted);
-  font-size: 14px;
+.card{
+  background:var(--card);
+  border-radius:14px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.3s;
 }
 
-main { padding: 30px; }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 28px;
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 40px rgba(0,0,0,.6);
 }
 
-.card {
-  background: var(--card);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.poster{
+  width:100%;
+  height:330px;
+  object-fit:cover;
 }
 
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-}
+.content{padding:14px}
+.title{font-size:16px;font-weight:600}
+.meta{font-size:12px;color:var(--muted);margin-top:4px}
 
-.poster { width: 100%; height: 330px; object-fit: cover; }
-
-.content { padding: 14px; }
-
-.title {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.meta {
-  font-size: 12px;
-  color: var(--muted);
-}
-
-a { text-decoration: none; color: inherit; }
-
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 12px;
-  color: var(--muted);
-  border-top: 1px solid #1f1f1f;
+footer{
+  text-align:center;
+  padding:20px;
+  font-size:12px;
+  color:var(--muted);
+  border-top:1px solid #1f1f1f;
 }
 </style>
 </head>
@@ -91,154 +79,75 @@ footer {
 
 <header>
   <h1><span>K</span>INEMA</h1>
-  <p>All Movies, Series & Anime at one place</p>
+  <p>A place where cinephiles don’t scroll — they stay.</p>
 </header>
 
 <main>
+  <section class="grid">
 
-  <!-- ALL CONTENT GRID -->
-  <div class="grid">
     <!-- MOVIES -->
-
-    <!-- Fight Club -->
-<a href="movie-detail.html" class="card" style="text-decoration:none; color:inherit;">
-  <img class="poster" src="https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg">
-  <div class="content">
-    <div class="title">Fight Club</div>
-    <div class="meta">1999 · Psychological · David Fincher</div>
-  </div>
-</a>
-    <a class="card" href="movie-detail.html?title=The Dark Knight">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg" alt="The Dark Knight">
+    <div class="card" onclick="openMovie('fightclub')">
+      <img class="poster" src="https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg">
       <div class="content">
-        <div class="title">The Dark Knight</div>
-        <div class="meta">2008 · Action · Christopher Nolan</div>
+        <div class="title">Fight Club</div>
+        <div class="meta">Movie · 1999 · Fincher</div>
       </div>
-    </a>
+    </div>
 
-    <a class="card" href="movie-detail.html?title=Pulp Fiction">
-      <img class="poster" src="https://www.tallengestore.com/cdn/shop/products/Pulp_Fiction_-_Quentin_Tarantino_Hollywood_Movie_Fan_Art_Poster_Collection_be3cc2fb-01f7-4309-a36c-cec2a25e1480.jpg?v=1572087969" alt="Pulp Fiction">
+    <div class="card" onclick="openMovie('interstellar')">
+      <img class="poster" src="https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg">
       <div class="content">
-        <div class="title">Pulp Fiction</div>
-        <div class="meta">1994 · Crime · Quentin Tarantino</div>
+        <div class="title">Interstellar</div>
+        <div class="meta">Movie · 2014 · Nolan</div>
       </div>
-    </a>
-
-    <a class="card" href="movie-detail.html?title=Parasite">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg" alt="Parasite">
-      <div class="content">
-        <div class="title">Parasite</div>
-        <div class="meta">2019 · Thriller · Bong Joon-ho</div>
-      </div>
-    </a>
-
-    <a class="card" href="movie-detail.html?title=Gladiator">
-      <img class="poster" src="https://m.media-amazon.com/images/I/61dcMsYIAJL._AC_UF894,1000_QL80_.jpg" alt="Gladiator">
-      <div class="content">
-        <div class="title">Gladiator</div>
-        <div class="meta">2000 · Action · Ridley Scott</div>
-      </div>
-    </a>
-
-    <a class="card" href="movie-detail.html?title=The Matrix">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg" alt="The Matrix">
-      <div class="content">
-        <div class="title">The Matrix</div>
-        <div class="meta">1999 · Sci-Fi · The Wachowskis</div>
-      </div>
-    </a>
+    </div>
 
     <!-- SERIES -->
-    <a class="card" href="movie-detail.html?title=Peaky Blinders">
-      <img class="poster" src="https://m.media-amazon.com/images/I/717VNB9u5IL.jpg" alt="Peaky Blinders">
-      <div class="content">
-        <div class="title">Peaky Blinders</div>
-        <div class="meta">2013 · Crime · Steven Knight</div>
-      </div>
-    </a>
-
-    <a class="card" href="movie-detail.html?title=The Witcher">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/5tuhCkqPOT20XPwwi9NhFnC1g9R.jpg" alt="The Witcher">
-      <div class="content">
-        <div class="title">The Witcher</div>
-        <div class="meta">2019 · Fantasy · Lauren Schmidt</div>
-      </div>
-    </a>
-
-    <a class="card" href="movie-detail.html?title=Stranger Things">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg" alt="Stranger Things">
-      <div class="content">
-        <div class="title">Stranger Things</div>
-        <div class="meta">2016 · Sci-Fi · The Duffer Brothers</div>
-      </div>
-    </a>
-
-    <a class="card" href="movie-detail.html?title=Breaking Bad">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg" alt="Breaking Bad">
+    <div class="card" onclick="openMovie('breakingbad')">
+      <img class="poster" src="https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg">
       <div class="content">
         <div class="title">Breaking Bad</div>
-        <div class="meta">2008 · Crime · Vince Gilligan</div>
+        <div class="meta">Series · Crime · Drama</div>
       </div>
-    </a>
+    </div>
 
-    <a class="card" href="movie-detail.html?title=Chernobyl">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/hlLXt2tOPT6RRnjiUmoxyG1LTFi.jpg" alt="Chernobyl">
+    <div class="card" onclick="openMovie('chernobyl')">
+      <img class="poster" src="https://image.tmdb.org/t/p/w500/hlLXt2tOPT6RRnjiUmoxyG1LTFi.jpg">
       <div class="content">
         <div class="title">Chernobyl</div>
-        <div class="meta">2019 · Drama · Craig Mazin</div>
+        <div class="meta">Series · HBO</div>
       </div>
-    </a>
+    </div>
 
     <!-- ANIME -->
-    <a class="card" href="movie-detail.html?title=Attack on Titan">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/hTP1DtLGFamjfu8WqjnuQdP1n4i.jpg" alt="Attack on Titan">
+    <div class="card" onclick="openMovie('aot')">
+      <img class="poster" src="https://image.tmdb.org/t/p/w500/hTP1DtLGFamjfu8WqjnuQdP1n4i.jpg">
       <div class="content">
         <div class="title">Attack on Titan</div>
-        <div class="meta">2013 · Action · Hajime Isayama</div>
+        <div class="meta">Anime · Dark · War</div>
       </div>
-    </a>
+    </div>
 
-    <a class="card" href="movie-detail.html?title=Death Note">
-      <img class="poster" src="https://m.media-amazon.com/images/I/71GqUgwo-eL._AC_UF894,1000_QL80_.jpg" alt="Death Note">
+    <div class="card" onclick="openMovie('deathnote')">
+      <img class="poster" src="https://image.tmdb.org/t/p/w500/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg">
       <div class="content">
         <div class="title">Death Note</div>
-        <div class="meta">2006 · Thriller · Tsugumi Ohba</div>
+        <div class="meta">Anime · Psychological</div>
       </div>
-    </a>
+    </div>
 
-    <a class="card" href="movie-detail.html?title=Demon Slayer">
-      <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAl_zRS4iiHQBZ0h4-NqlK6-S9_HcVgKCKY_72AQtW1A&s=10" alt="Demon Slayer">
-      <div class="content">
-        <div class="title">Demon Slayer</div>
-        <div class="meta">2019 · Action · Koyoharu Gotouge</div>
-      </div>
-    </a>
-
-    <a class="card" href="movie-detail.html?title=Jujutsu Kaisen">
-      <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gyJ-SbPmvLbuR2zEqe_7U1Y-LSmXsDsnsIEM4ptUHQ&s=10" alt="Jujutsu Kaisen">
-      <div class="content">
-        <div class="title">Jujutsu Kaisen</div>
-        <div class="meta">2020 · Action · Gege Akutami</div>
-      </div>
-    </a>
-
-    <a class="card" href="movie-detail.html?title=One Punch Man">
-      <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThLY4h20UKGNURhn0ez0izNtuTmnYn1Kh8vKsZlIA9i0ZNfv2ioAnmA6M&s=10" alt="One Punch Man">
-      <div class="content">
-        <div class="title">One Punch Man</div>
-        <div class="meta">2015 · Action · ONE</div>
-      </div>
-    </a>
-
-  </div>
-
+  </section>
 </main>
 
 <footer>
-  © CineHub — All titles in one place.
+  © CineHub — Built by cinephiles, not algorithms.
 </footer>
+
+<script>
+function openMovie(id){
+  window.location.href = `movie.html?id=${id}`;
+}
+</script>
 
 </body>
 </html>
-
-
