@@ -1,35 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Inter,system-ui,sans-serif;
+  background:#0b0b10;
+  color:#fff;
+}
+.hero{
+  height:60vh;
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:flex-end;
+}
+.overlay{
+  width:100%;
+  padding:30px;
+  background:linear-gradient(to top,#0b0b10 20%,transparent);
+}
+h1{margin:0;font-size:34px}
+.meta{color:#aaa;margin-top:6px}
+.desc{
+  padding:30px;
+  max-width:900px;
+  line-height:1.6;
+  font-size:16px;
+}
+.loading{
+  text-align:center;
+  padding:80px;
+  color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+  <div class="loading">LOADING...</div>
+</div>
+
+<script src="data.js"></script>
 <script>
-  const DATA = {
-  fightclub:{
-    title:"Fight Club",
-    year:"1999",
-    type:"Movie",
-    poster:"https://image.tmdb.org/t/p/w500/a26cQPRhJPX6GbWfQbvZdrrp9j9.jpg",
-    description:"An insomniac and a soap maker form an underground fight club."
-  },
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
 
-  godfather:{
-    title:"The Godfather",
-    year:"1972",
-    type:"Movie",
-    poster:"https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
-    description:"The aging patriarch of an organized crime dynasty transfers control to his son."
-  },
+const item = DATA[id];
 
-  breakingbad:{
-    title:"Breaking Bad",
-    year:"2008–2013",
-    type:"Series",
-    poster:"https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
-    description:"A chemistry teacher turns into a meth kingpin."
-  },
+const app = document.getElementById("app");
 
-  aot:{
-    title:"Attack on Titan",
-    year:"2013–2023",
-    type:"Anime",
-    poster:"https://image.tmdb.org/t/p/w500/hTP1DtLGFamjfu8WqjnuQdP1n4i.jpg",
-    description:"Humanity fights for survival against giant Titans."
-  }
-};
+if(!item){
+  app.innerHTML = "<div class='loading'>NOT FOUND</div>";
+}else{
+  app.innerHTML = `
+    <div class="hero" style="background-image:url('${item.poster}')">
+      <div class="overlay">
+        <h1>${item.title}</h1>
+        <div class="meta">${item.year} · ${item.type}</div>
+      </div>
+    </div>
+
+    <div class="desc">
+      ${item.description}
+    </div>
+  `;
+}
 </script>
+
+</body>
+</html>
