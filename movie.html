@@ -7,68 +7,51 @@
 
 <style>
 body{
-  margin:0;
-  font-family:Inter,system-ui,sans-serif;
   background:#0b0b10;
-  color:#fff;
+  color:white;
+  font-family:system-ui;
+  padding:30px;
 }
-.hero{
-  height:60vh;
-  background-size:cover;
-  background-position:center;
-  display:flex;
-  align-items:flex-end;
+.container{
+  max-width:800px;
+  margin:auto;
 }
-.overlay{
+img{
   width:100%;
-  padding:30px;
-  background:linear-gradient(to top,#0b0b10 20%,transparent);
+  border-radius:14px;
+  margin-bottom:20px;
 }
-h1{margin:0;font-size:34px}
-.meta{color:#aaa;margin-top:6px}
-.desc{
-  padding:30px;
-  max-width:900px;
-  line-height:1.6;
-  font-size:16px;
-}
-.loading{
-  text-align:center;
-  padding:80px;
-  color:#777;
+.type{
+  color:#aaa;
+  margin-bottom:10px;
 }
 </style>
 </head>
 
 <body>
 
-<div id="app">
-  <div class="loading">LOADING...</div>
+<div class="container" id="app">
+  <h2>Loading...</h2>
 </div>
 
+<!-- LOAD DATA FIRST -->
 <script src="data.js"></script>
+
 <script>
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
-
 const item = DATA[id];
 
 const app = document.getElementById("app");
 
 if(!item){
-  app.innerHTML = "<div class='loading'>NOT FOUND</div>";
+  app.innerHTML = "<h2>Not Found</h2>";
 }else{
   app.innerHTML = `
-    <div class="hero" style="background-image:url('${item.poster}')">
-      <div class="overlay">
-        <h1>${item.title}</h1>
-        <div class="meta">${item.year} · ${item.type}</div>
-      </div>
-    </div>
-
-    <div class="desc">
-      ${item.description}
-    </div>
+    <img src="${item.poster}">
+    <h1>${item.title}</h1>
+    <div class="type">${item.type} · ${item.year}</div>
+    <p>${item.description}</p>
   `;
 }
 </script>
