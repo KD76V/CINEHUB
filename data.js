@@ -1,4 +1,5 @@
-const CONTENT = {
+<script>
+  const CONTENT = {
   "fight-club": {
     title: "Fight Club",
     year: "1999",
@@ -67,3 +68,4 @@ const CONTENT = {
     ]
   }
 };
+</script>
