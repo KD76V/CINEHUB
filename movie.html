@@ -330,6 +330,7 @@ document.getElementById("likeBtn").onclick = function(){
 </script>
 <script>
 const reviewBtns = document.querySelectorAll('.review-options button');
+  document.querySelector('.review-options .onetime').classList.add('selected');
 
 reviewBtns.forEach(btn=>{
   btn.addEventListener('click',()=>{
@@ -341,6 +342,7 @@ reviewBtns.forEach(btn=>{
 </body>
 
 </html>
+
 
 
 
