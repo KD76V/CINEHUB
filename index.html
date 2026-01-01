@@ -8,48 +8,39 @@
 <style>
 :root{
   --bg:#0b0b10;
-  --card:#15151c;
+  --card:#141417;
   --text:#eaeaea;
   --muted:#9a9a9a;
   --accent:#e50914;
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
-
 body{
+  margin:0;
   background:var(--bg);
   color:var(--text);
   font-family:Inter,system-ui,sans-serif;
 }
 
 header{
-  padding:24px;
+  padding:28px;
   border-bottom:1px solid #1f1f1f;
 }
+header h1 span{color:var(--accent);}
 
-header h1{
-  font-size:28px;
-  letter-spacing:1px;
-}
-header span{color:var(--accent)}
-header p{color:var(--muted);margin-top:6px;font-size:14px}
-
-main{padding:30px}
+main{padding:32px;}
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:28px;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:26px;
 }
 
 .card{
   background:var(--card);
   border-radius:14px;
   overflow:hidden;
-  cursor:pointer;
   transition:.3s;
 }
-
 .card:hover{
   transform:translateY(-8px);
   box-shadow:0 20px 40px rgba(0,0,0,.6);
@@ -57,20 +48,20 @@ main{padding:30px}
 
 .poster{
   width:100%;
-  height:330px;
+  height:300px;
   object-fit:cover;
 }
 
-.content{padding:14px}
-.title{font-size:16px;font-weight:600}
-.meta{font-size:12px;color:var(--muted);margin-top:4px}
+.content{padding:14px;}
+.title{font-weight:600;}
+.meta{font-size:12px;color:var(--muted);margin-top:4px;}
 
-footer{
-  text-align:center;
-  padding:20px;
-  font-size:12px;
-  color:var(--muted);
-  border-top:1px solid #1f1f1f;
+a{text-decoration:none;color:inherit;}
+
+.section-title{
+  margin:40px 0 16px;
+  font-size:20px;
+  letter-spacing:.5px;
 }
 </style>
 </head>
@@ -79,75 +70,83 @@ footer{
 
 <header>
   <h1><span>K</span>INEMA</h1>
-  <p>A place where cinephiles don’t scroll — they stay.</p>
+  <p>A place where cinephiles stay.</p>
 </header>
 
 <main>
-  <section class="grid">
 
-    <!-- MOVIES -->
-    <div class="card" onclick="openMovie('fightclub')">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg">
-      <div class="content">
-        <div class="title">Fight Club</div>
-        <div class="meta">Movie · 1999 · Fincher</div>
-      </div>
-    </div>
+<h2 class="section-title">Movies</h2>
+<div class="grid">
 
-    <div class="card" onclick="openMovie('interstellar')">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg">
-      <div class="content">
-        <div class="title">Interstellar</div>
-        <div class="meta">Movie · 2014 · Nolan</div>
-      </div>
-    </div>
+<a href="movie.html?id=fightclub" class="card">
+  <img class="poster" src="https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg">
+  <div class="content">
+    <div class="title">Fight Club</div>
+    <div class="meta">1999 · Fincher</div>
+  </div>
+</a>
 
-    <!-- SERIES -->
-    <div class="card" onclick="openMovie('breakingbad')">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg">
-      <div class="content">
-        <div class="title">Breaking Bad</div>
-        <div class="meta">Series · Crime · Drama</div>
-      </div>
-    </div>
+<a href="movie.html?id=interstellar" class="card">
+  <img class="poster" src="https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg">
+  <div class="content">
+    <div class="title">Interstellar</div>
+    <div class="meta">2014 · Nolan</div>
+  </div>
+</a>
 
-    <div class="card" onclick="openMovie('chernobyl')">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/hlLXt2tOPT6RRnjiUmoxyG1LTFi.jpg">
-      <div class="content">
-        <div class="title">Chernobyl</div>
-        <div class="meta">Series · HBO</div>
-      </div>
-    </div>
+<a href="movie.html?id=godfather" class="card">
+  <img class="poster" src="https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg">
+  <div class="content">
+    <div class="title">The Godfather</div>
+    <div class="meta">1972 · Coppola</div>
+  </div>
+</a>
 
-    <!-- ANIME -->
-    <div class="card" onclick="openMovie('aot')">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/hTP1DtLGFamjfu8WqjnuQdP1n4i.jpg">
-      <div class="content">
-        <div class="title">Attack on Titan</div>
-        <div class="meta">Anime · Dark · War</div>
-      </div>
-    </div>
+</div>
 
-    <div class="card" onclick="openMovie('deathnote')">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg">
-      <div class="content">
-        <div class="title">Death Note</div>
-        <div class="meta">Anime · Psychological</div>
-      </div>
-    </div>
+<h2 class="section-title">Series</h2>
+<div class="grid">
 
-  </section>
+<a href="series.html?id=breakingbad" class="card">
+  <img class="poster" src="https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg">
+  <div class="content">
+    <div class="title">Breaking Bad</div>
+    <div class="meta">Crime · Drama</div>
+  </div>
+</a>
+
+<a href="series.html?id=chernobyl" class="card">
+  <img class="poster" src="https://image.tmdb.org/t/p/w500/hlLXt2tOPT6RRnjiUmoxyG1LTFi.jpg">
+  <div class="content">
+    <div class="title">Chernobyl</div>
+    <div class="meta">Drama · HBO</div>
+  </div>
+</a>
+
+</div>
+
+<h2 class="section-title">Anime</h2>
+<div class="grid">
+
+<a href="anime.html?id=aot" class="card">
+  <img class="poster" src="https://image.tmdb.org/t/p/w500/hTP1DtLGFamjfu8WqjnuQdP1n4i.jpg">
+  <div class="content">
+    <div class="title">Attack on Titan</div>
+    <div class="meta">Dark · War</div>
+  </div>
+</a>
+
+<a href="anime.html?id=deathnote" class="card">
+  <img class="poster" src="https://image.tmdb.org/t/p/w500/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg">
+  <div class="content">
+    <div class="title">Death Note</div>
+    <div class="meta">Mind Games</div>
+  </div>
+</a>
+
+</div>
+
 </main>
-
-<footer>
-  © CineHub — Built by cinephiles, not algorithms.
-</footer>
-
-<script>
-function openMovie(id){
-  window.location.href = `movie.html?id=${id}`;
-}
-</script>
 
 </body>
 </html>
