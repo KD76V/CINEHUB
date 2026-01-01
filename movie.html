@@ -128,15 +128,20 @@ section h2{
   border:2px solid #2a2a30;
   color:#aaa;
   transition:all .25s ease;
-}
+}/*
 .skip{background:var(--skip);}
 .onetime{background:var(--onetime);}
 .recommend{background:var(--recommend);}
-.cinema{background:var(--cinema);}
+.cinema{background:var(--cinema);}*/
   .review-options button.selected{
   color:#fff;
   transform:scale(1.05);
-}
+  background:transparent;
+  }
+  /*.review-options button.selected{
+  color:#fff;
+  transform:scale(1.05);
+}*/
 
 /* color only when selected */
 .review-options .skip.selected{
@@ -281,7 +286,7 @@ footer{
   <h2>Your Rating</h2>
   <div class="review-options">
     <button class="skip">SKIP</button>
-    <button class="onetime">ONE TIME</button>
+    <button class="onetime selected">ONE TIME</button>
     <button class="recommend">RECOMMEND</button>
     <button class="cinema">CINEMA</button>
   </div>
@@ -336,6 +341,7 @@ reviewBtns.forEach(btn=>{
 </body>
 
 </html>
+
 
 
 
