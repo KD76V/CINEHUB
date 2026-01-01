@@ -121,15 +121,43 @@ section h2{
 }
 .review-options button{
   padding:14px;
-  border:none;
-  border-radius:10px;
+  border-radius:14px;
   font-weight:600;
   cursor:pointer;
+  background:transparent;
+  border:2px solid #2a2a30;
+  color:#aaa;
+  transition:all .25s ease;
 }
 .skip{background:var(--skip);}
 .onetime{background:var(--onetime);}
 .recommend{background:var(--recommend);}
 .cinema{background:var(--cinema);}
+  .review-options button.selected{
+  color:#fff;
+  transform:scale(1.05);
+}
+
+/* color only when selected */
+.review-options .skip.selected{
+  border-color:var(--skip);
+  box-shadow:0 0 0 2px var(--skip);
+}
+
+.review-options .onetime.selected{
+  border-color:var(--onetime);
+  box-shadow:0 0 0 2px var(--onetime);
+}
+
+.review-options .recommend.selected{
+  border-color:var(--recommend);
+  box-shadow:0 0 0 2px var(--recommend);
+}
+
+.review-options .cinema.selected{
+  border-color:var(--cinema);
+  box-shadow:0 0 0 2px var(--cinema);
+}
 
 /* REVIEW BOX */
 textarea{
@@ -295,8 +323,18 @@ document.getElementById("likeBtn").onclick = function(){
   this.classList.toggle("active");
 };
 </script>
+<script>
+const reviewBtns = document.querySelectorAll('.review-options button');
 
+reviewBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    reviewBtns.forEach(b=>b.classList.remove('selected'));
+    btn.classList.add('selected');
+  });
+});
+</script>
 </body>
 
 </html>
+
 
