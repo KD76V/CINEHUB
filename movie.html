@@ -2,57 +2,142 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Details</title>
+<title>Movie | CineHub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
-body{
-  background:#0b0b10;
-  color:white;
-  font-family:system-ui;
-  padding:30px;
+:root{
+  --bg:#0b0b10;
+  --card:#141417;
+  --text:#eaeaea;
+  --muted:#9a9a9a;
+  --skip:#555;
+  --onetime:#3a6cff;
+  --recommend:#2ecc71;
+  --cinema:#e50914;
 }
-.container{
-  max-width:800px;
-  margin:auto;
-}
-img{
-  width:100%;
-  border-radius:14px;
-  margin-bottom:20px;
-}
-.type{
-  color:#aaa;
-  margin-bottom:10px;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;}
+.hero{height:280px;display:flex;align-items:flex-end;padding:24px;background-size:cover;background-position:center;color:#fff;}
+.hero h1{font-size:40px;margin-bottom:6px;}
+.hero .meta{color:#ccc;margin-bottom:12px;}
+.hero a{display:inline-block;padding:10px 18px;background:var(--cinema);color:#fff;text-decoration:none;border-radius:8px;font-weight:600;}
+main{max-width:1200px;margin:auto;padding:30px;}
+.top{display:flex;gap:30px;margin-bottom:40px;}
+.top img{width:220px;border-radius:14px;}
+.actions{display:flex;gap:14px;margin:20px 0;}
+.actions button{padding:12px 18px;border:none;border-radius:10px;background:#1c1c22;color:#fff;cursor:pointer;}
+.cast{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+.cast div{text-align:center;}
+.cast img{width:80px;height:100px;border-radius:6px;margin-bottom:4px;}
+.review-options{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+.review-options button{padding:12px;border-radius:12px;background:transparent;border:2px solid #2a2a30;color:#aaa;font-weight:600;cursor:pointer;transition:.25s;}
+.review-options button.selected{color:#fff;transform:scale(1.05);}
+.review-options .skip.selected{border-color:var(--skip);box-shadow:0 0 0 2px var(--skip);}
+.review-options .onetime.selected{border-color:var(--onetime);box-shadow:0 0 0 2px var(--onetime);}
+.review-options .recommend.selected{border-color:var(--recommend);box-shadow:0 0 0 2px var(--recommend);}
+.review-options .cinema.selected{border-color:var(--cinema);box-shadow:0 0 0 2px var(--cinema);}
+textarea{width:100%;height:160px;background:#141417;border:1px solid #2a2a30;border-radius:12px;padding:14px;color:#fff;resize:none;}
+.more{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:20px;margin-top:30px;}
+.more img{width:100%;border-radius:12px;}
+.more p{text-align:center;color:#ccc;margin-top:6px;font-size:13px;}
+footer{text-align:center;padding:30px;color:#9a9a9a;border-top:1px solid #1f1f1f;}
 </style>
 </head>
-
 <body>
 
-<div class="container" id="app">
-  <h2>Loading...</h2>
+<div class="hero" id="hero">
+  <div>
+    <h1>LOADING...</h1>
+    <p class="meta"></p>
+    <a id="trailer" target="_blank">▶ Watch Trailer</a>
+  </div>
 </div>
 
-<!-- LOAD DATA FIRST -->
-<script src="data.js"></script>
+<main>
+  <div class="top">
+    <img id="poster" src="">
+    <div>
+      <p id="plot"></p>
+      <div class="actions">
+        <button>Review</button>
+        <button>Add to Watchlist</button>
+      </div>
+    </div>
+  </div>
 
+  <section>
+    <h2>Cast</h2>
+    <div class="cast" id="cast"></div>
+  </section>
+
+  <section>
+    <h2>Your Rating</h2>
+    <div class="review-options">
+      <button class="skip">SKIP</button>
+      <button class="onetime selected">ONE TIME</button>
+      <button class="recommend">RECOMMEND</button>
+      <button class="cinema">CINEMA</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Your Review</h2>
+    <textarea placeholder="Write your review..."></textarea>
+  </section>
+
+  <section>
+    <h2>More Like This</h2>
+    <div class="more">
+      <!-- More movies can be repeated -->
+      <a href="movie.html?id=godfather">
+        <img src="https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg">
+        <p>The Godfather</p>
+      </a>
+      <a href="movie.html?id=breaking-bad">
+        <img src="https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg">
+        <p>Breaking Bad</p>
+      </a>
+      <a href="movie.html?id=aot">
+        <img src="https://image.tmdb.org/t/p/w500/hTP1DtLGFamjfu8WqjnuQdP1n4i.jpg">
+        <p>Attack on Titan</p>
+      </a>
+      <a href="movie.html?id=fight-club">
+        <img src="https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg">
+        <p>Fight Club</p>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>© CineHub</footer>
+
+<script src="data.js"></script>
 <script>
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
-const item = DATA[id];
+const data = CONTENT[id];
 
-const app = document.getElementById("app");
+if(!data){
+  document.body.innerHTML="<h2 style='color:white;text-align:center'>Content not found</h2>";
+} else {
+  document.querySelector("title").innerText = data.title + " | CineHub";
+  document.querySelector("#hero h1").innerText = data.title;
+  document.querySelector("#hero .meta").innerText = `${data.year} · ${data.genre} · ${data.director}`;
+  document.querySelector("#hero").style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,.3), #0b0b10), url(${data.backdrop})`;
+  document.querySelector("#poster").src = data.poster;
+  document.querySelector("#plot").innerText = data.plot;
 
-if(!item){
-  app.innerHTML = "<h2>Not Found</h2>";
-}else{
-  app.innerHTML = `
-    <img src="${item.poster}">
-    <h1>${item.title}</h1>
-    <div class="type">${item.type} · ${item.year}</div>
-    <p>${item.description}</p>
-  `;
+  document.querySelector("#trailer").href = data.trailer;
+
+  // Cast
+  const castDiv = document.querySelector("#cast");
+  castDiv.innerHTML = "";
+  data.cast.forEach(c=>{
+    const cdiv = document.createElement("div");
+    cdiv.innerHTML = `<img src="${c.photo}"><span>${c.name}</span>`;
+    castDiv.appendChild(cdiv);
+  });
 }
 </script>
 
