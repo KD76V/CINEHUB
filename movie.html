@@ -232,40 +232,32 @@ footer{
 <footer>© CineHub</footer>
 
 <script src="data.js"></script>
+<script src="data.js"></script>
 <script>
-const id = new URLSearchParams(window.location.search).get("id");
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
 const data = CONTENT[id];
 
-if(!data){
-  document.body.innerHTML="<h2 style='text-align:center;color:white'>Not Found</h2>";
-}else{
-  document.getElementById("title").innerText=data.title;
-  document.getElementById("meta").innerText=`${data.year} · ${data.genre}`;
-  document.getElementById("plot").innerText=data.plot;
-  document.getElementById("poster").src=data.poster;
-  document.getElementById("trailer").href=data.trailer;
-  document.getElementById("hero").style.backgroundImage=
-    `linear-gradient(to bottom, rgba(0,0,0,.25), #0b0b10), url(${data.backdrop})`;
+if (!data) {
+  document.body.innerHTML =
+    "<h2 style='color:white;text-align:center'>Content not found</h2>";
+} else {
+  document.querySelector("title").innerText = data.title + " | CineHub";
 
-  data.cast.forEach(c=>{
-    const s=document.createElement("span");
-    s.innerText=c;
-    document.getElementById("cast").appendChild(s);
-  });
+  document.querySelector(".hero h1").innerText = data.title;
+  document.querySelector(".hero .meta").innerText =
+    `${data.year} · ${data.genre} · ${data.director}`;
+
+  document.querySelector(".hero").style.backgroundImage =
+    `linear-gradient(to bottom, rgba(0,0,0,.3), #0b0b10), url(${data.backdrop})`;
+
+  document.querySelector(".poster").src = data.poster;
+  document.querySelector(".top p").innerText = data.plot;
+  document.querySelector(".trailer").href = data.trailer;
 }
-
-document.getElementById("likeBtn").onclick=function(){
-  this.classList.toggle("active");
-};
-
-document.querySelectorAll(".review-options button").forEach(btn=>{
-  btn.onclick=()=>{
-    document.querySelectorAll(".review-options button")
-      .forEach(b=>b.classList.remove("selected"));
-    btn.classList.add("selected");
-  };
-});
 </script>
+
 
 </body>
 </html>
+
