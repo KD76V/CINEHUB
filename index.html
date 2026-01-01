@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CineHub</title>
+<title>CineHub | Movies & Series & Anime</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -14,11 +14,7 @@
   --accent: #e50914;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   background: var(--bg);
@@ -36,9 +32,7 @@ header h1 {
   letter-spacing: 1px;
 }
 
-header span {
-  color: var(--accent);
-}
+header span { color: var(--accent); }
 
 header p {
   margin-top: 6px;
@@ -46,9 +40,7 @@ header p {
   font-size: 14px;
 }
 
-main {
-  padding: 30px;
-}
+main { padding: 30px; }
 
 .grid {
   display: grid;
@@ -61,9 +53,6 @@ main {
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
 }
 
 .card:hover {
@@ -71,15 +60,9 @@ main {
   box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
-.poster {
-  width: 100%;
-  height: 330px;
-  object-fit: cover;
-}
+.poster { width: 100%; height: 330px; object-fit: cover; }
 
-.content {
-  padding: 14px;
-}
+.content { padding: 14px; }
 
 .title {
   font-size: 16px;
@@ -91,6 +74,8 @@ main {
   font-size: 12px;
   color: var(--muted);
 }
+
+a { text-decoration: none; color: inherit; }
 
 footer {
   text-align: center;
@@ -106,39 +91,31 @@ footer {
 
 <header>
   <h1><span>K</span>INEMA</h1>
-  <p>A place where cinephiles don’t scroll — they stay.</p>
+  <p>All Movies, Series & Anime at one place</p>
 </header>
 
 <main>
-  <h2>Top Picks</h2>
+
+  <!-- ALL CONTENT GRID -->
   <div class="grid">
-
     <!-- MOVIES -->
-    <a href="movie.html" class="card">
-      <img class="poster" src="https://th.bing.com/th/id/OIP.OWeX1XHvWaS6oLhC6GRNSgHaKe?w=184&h=260&c=7&r=0&o=7&pid=1.7&rm=3" alt="Fight Club">
-      <div class="content">
-        <div class="title">Fight Club</div>
-        <div class="meta">1999 · Psychological · Fincher</div>
-      </div>
-    </a>
-
-    <a href="darkknight.html" class="card">
+    <a class="card" href="movie-detail.html?title=The Dark Knight">
       <img class="poster" src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg" alt="The Dark Knight">
       <div class="content">
         <div class="title">The Dark Knight</div>
-        <div class="meta">2008 · Action · Nolan</div>
+        <div class="meta">2008 · Action · Christopher Nolan</div>
       </div>
     </a>
 
-    <a href="pulpfiction.html" class="card">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/dM2w364MScsjFf8pfMbaWUcWrR.jpg" alt="Pulp Fiction">
+    <a class="card" href="movie-detail.html?title=Pulp Fiction">
+      <img class="poster" src="https://www.tallengestore.com/cdn/shop/products/Pulp_Fiction_-_Quentin_Tarantino_Hollywood_Movie_Fan_Art_Poster_Collection_be3cc2fb-01f7-4309-a36c-cec2a25e1480.jpg?v=1572087969" alt="Pulp Fiction">
       <div class="content">
         <div class="title">Pulp Fiction</div>
-        <div class="meta">1994 · Crime · Tarantino</div>
+        <div class="meta">1994 · Crime · Quentin Tarantino</div>
       </div>
     </a>
 
-    <a href="parasite.html" class="card">
+    <a class="card" href="movie-detail.html?title=Parasite">
       <img class="poster" src="https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg" alt="Parasite">
       <div class="content">
         <div class="title">Parasite</div>
@@ -146,7 +123,15 @@ footer {
       </div>
     </a>
 
-    <a href="matrix.html" class="card">
+    <a class="card" href="movie-detail.html?title=Gladiator">
+      <img class="poster" src="https://image.tmdb.org/t/p/w500/5AxtxU2rBPrnLv1ITvX01pYvOOd.jpg" alt="Gladiator">
+      <div class="content">
+        <div class="title">Gladiator</div>
+        <div class="meta">2000 · Action · Ridley Scott</div>
+      </div>
+    </a>
+
+    <a class="card" href="movie-detail.html?title=The Matrix">
       <img class="poster" src="https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg" alt="The Matrix">
       <div class="content">
         <div class="title">The Matrix</div>
@@ -155,31 +140,15 @@ footer {
     </a>
 
     <!-- SERIES -->
-    <a href="breakingbad.html" class="card">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg" alt="Breaking Bad">
-      <div class="content">
-        <div class="title">Breaking Bad</div>
-        <div class="meta">2008 · Crime · Vince Gilligan</div>
-      </div>
-    </a>
-
-    <a href="strangerthings.html" class="card">
-      <img class="poster" src="https://strangerthingsposters.com/ws/alt-imgs/orig/248f376722870d8b4c2f3ae0d0acc17c.webp" alt="Stranger Things">
-      <div class="content">
-        <div class="title">Stranger Things</div>
-        <div class="meta">2016 · Sci-Fi · Duffer Brothers</div>
-      </div>
-    </a>
-
-    <a href="peakyblinders.html" class="card">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/3XlEk2RxPSf3T0B9utCFdsQhxU.jpg" alt="Peaky Blinders">
+    <a class="card" href="movie-detail.html?title=Peaky Blinders">
+      <img class="poster" src="https://m.media-amazon.com/images/I/717VNB9u5IL.jpg" alt="Peaky Blinders">
       <div class="content">
         <div class="title">Peaky Blinders</div>
         <div class="meta">2013 · Crime · Steven Knight</div>
       </div>
     </a>
 
-    <a href="witcher.html" class="card">
+    <a class="card" href="movie-detail.html?title=The Witcher">
       <img class="poster" src="https://image.tmdb.org/t/p/w500/5tuhCkqPOT20XPwwi9NhFnC1g9R.jpg" alt="The Witcher">
       <div class="content">
         <div class="title">The Witcher</div>
@@ -187,7 +156,23 @@ footer {
       </div>
     </a>
 
-    <a href="chernobyl.html" class="card">
+    <a class="card" href="movie-detail.html?title=Stranger Things">
+      <img class="poster" src="https://image.tmdb.org/t/p/w500/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg" alt="Stranger Things">
+      <div class="content">
+        <div class="title">Stranger Things</div>
+        <div class="meta">2016 · Sci-Fi · The Duffer Brothers</div>
+      </div>
+    </a>
+
+    <a class="card" href="movie-detail.html?title=Breaking Bad">
+      <img class="poster" src="https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg" alt="Breaking Bad">
+      <div class="content">
+        <div class="title">Breaking Bad</div>
+        <div class="meta">2008 · Crime · Vince Gilligan</div>
+      </div>
+    </a>
+
+    <a class="card" href="movie-detail.html?title=Chernobyl">
       <img class="poster" src="https://image.tmdb.org/t/p/w500/hlLXt2tOPT6RRnjiUmoxyG1LTFi.jpg" alt="Chernobyl">
       <div class="content">
         <div class="title">Chernobyl</div>
@@ -196,7 +181,7 @@ footer {
     </a>
 
     <!-- ANIME -->
-    <a href="attackontitan.html" class="card">
+    <a class="card" href="movie-detail.html?title=Attack on Titan">
       <img class="poster" src="https://image.tmdb.org/t/p/w500/hTP1DtLGFamjfu8WqjnuQdP1n4i.jpg" alt="Attack on Titan">
       <div class="content">
         <div class="title">Attack on Titan</div>
@@ -204,32 +189,32 @@ footer {
       </div>
     </a>
 
-    <a href="deathnote.html" class="card">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg" alt="Death Note">
+    <a class="card" href="movie-detail.html?title=Death Note">
+      <img class="poster" src="https://m.media-amazon.com/images/I/71GqUgwo-eL._AC_UF894,1000_QL80_.jpg" alt="Death Note">
       <div class="content">
         <div class="title">Death Note</div>
         <div class="meta">2006 · Thriller · Tsugumi Ohba</div>
       </div>
     </a>
 
-    <a href="demonslayer.html" class="card">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/jeY9YZ0bKFFy6Nw1JbCki0yZq6L.jpg" alt="Demon Slayer">
+    <a class="card" href="movie-detail.html?title=Demon Slayer">
+      <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAl_zRS4iiHQBZ0h4-NqlK6-S9_HcVgKCKY_72AQtW1A&s=10" alt="Demon Slayer">
       <div class="content">
         <div class="title">Demon Slayer</div>
         <div class="meta">2019 · Action · Koyoharu Gotouge</div>
       </div>
     </a>
 
-    <a href="jujutsukaisen.html" class="card">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/3P52oz9HPQWxcwHOwxtyrVV1LKi.jpg" alt="Jujutsu Kaisen">
+    <a class="card" href="movie-detail.html?title=Jujutsu Kaisen">
+      <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gyJ-SbPmvLbuR2zEqe_7U1Y-LSmXsDsnsIEM4ptUHQ&s=10" alt="Jujutsu Kaisen">
       <div class="content">
         <div class="title">Jujutsu Kaisen</div>
         <div class="meta">2020 · Action · Gege Akutami</div>
       </div>
     </a>
 
-    <a href="onepunchman.html" class="card">
-      <img class="poster" src="https://image.tmdb.org/t/p/w500/q9uV0F2xRo1n8pu0z2YkdYgIOTV.jpg" alt="One Punch Man">
+    <a class="card" href="movie-detail.html?title=One Punch Man">
+      <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThLY4h20UKGNURhn0ez0izNtuTmnYn1Kh8vKsZlIA9i0ZNfv2ioAnmA6M&s=10" alt="One Punch Man">
       <div class="content">
         <div class="title">One Punch Man</div>
         <div class="meta">2015 · Action · ONE</div>
@@ -237,12 +222,12 @@ footer {
     </a>
 
   </div>
+
 </main>
 
 <footer>
-  © CineHub — Built by cinephiles, not algorithms.
+  © CineHub — All titles in one place.
 </footer>
 
 </body>
 </html>
-
