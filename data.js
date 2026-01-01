@@ -1,4 +1,5 @@
-const DATA = {
+<script>
+  const DATA = {
   fightclub:{
     title:"Fight Club",
     year:"1999",
@@ -31,3 +32,4 @@ const DATA = {
     description:"Humanity fights for survival against giant Titans."
   }
 };
+</script>
