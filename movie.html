@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Fight Club | CineHub</title>
+<title>Movie | CineHub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -19,33 +19,27 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
+
 body{
   background:var(--bg);
   color:var(--text);
   font-family:Inter,system-ui,sans-serif;
 }
 
-/* ---------- HERO ---------- */
-/*.hero{
-  height:65vh;
+/* HERO */
+.hero{
+  height:280px;
   background:
-    linear-gradient(to bottom, rgba(0,0,0,.2), #0b0b10),
-    url("https://image.tmdb.org/t/p/original/fCayJrkfRaCRCTh8GqN30f8oyQF.jpg")
+    linear-gradient(to bottom, rgba(0,0,0,.25), #0b0b10),
     center/cover no-repeat;
-  padding:30px;
   display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-}*/
-.hero h1{
-  font-size:42px;
+  align-items:flex-end;
+  padding:24px;
 }
-.hero .meta{
-  color:var(--muted);
-  margin:8px 0 14px;
-}
+.hero h1{font-size:40px;}
+.hero .meta{color:var(--muted);margin:6px 0 12px;}
 .hero a{
-  width:max-content;
+  display:inline-block;
   padding:10px 18px;
   background:var(--cinema);
   color:#fff;
@@ -54,10 +48,14 @@ body{
   font-weight:600;
 }
 
-/* ---------- MAIN ---------- */
-main{padding:30px;max-width:1200px;margin:auto;}
+/* MAIN */
+main{
+  max-width:1200px;
+  margin:auto;
+  padding:30px;
+}
 
-/* TOP INFO */
+/* TOP */
 .top{
   display:flex;
   gap:30px;
@@ -68,8 +66,8 @@ main{padding:30px;max-width:1200px;margin:auto;}
   border-radius:14px;
 }
 .like{
-  margin-top:12px;
-  padding:10px 14px;
+  margin-top:14px;
+  padding:10px 16px;
   background:#1c1c22;
   border:none;
   border-radius:8px;
@@ -78,7 +76,7 @@ main{padding:30px;max-width:1200px;margin:auto;}
 }
 .like.active{background:var(--cinema);}
 
-/* BUTTON ROW */
+/* ACTIONS */
 .actions{
   display:flex;
   gap:14px;
@@ -94,17 +92,13 @@ main{padding:30px;max-width:1200px;margin:auto;}
 }
 
 /* SECTIONS */
-section{
-  margin-bottom:40px;
-}
-section h2{
-  margin-bottom:14px;
-}
+section{margin-bottom:40px;}
+section h2{margin-bottom:14px;}
 
 /* CAST */
 .cast{
   display:flex;
-  gap:12px;
+  gap:10px;
   flex-wrap:wrap;
 }
 .cast span{
@@ -122,43 +116,29 @@ section h2{
 .review-options button{
   padding:14px;
   border-radius:14px;
-  font-weight:600;
-  cursor:pointer;
   background:transparent;
   border:2px solid #2a2a30;
   color:#aaa;
-  transition:all .25s ease;
-}/*
-.skip{background:var(--skip);}
-.onetime{background:var(--onetime);}
-.recommend{background:var(--recommend);}
-.cinema{background:var(--cinema);}*/
-  .review-options button.selected{
+  font-weight:600;
+  cursor:pointer;
+  transition:.25s;
+}
+.review-options button.selected{
   color:#fff;
   transform:scale(1.05);
-  background:transparent;
-  }
-  /*.review-options button.selected{
-  color:#fff;
-  transform:scale(1.05);
-}*/
-
-/* color only when selected */
+}
 .review-options .skip.selected{
   border-color:var(--skip);
   box-shadow:0 0 0 2px var(--skip);
 }
-
 .review-options .onetime.selected{
   border-color:var(--onetime);
   box-shadow:0 0 0 2px var(--onetime);
 }
-
 .review-options .recommend.selected{
   border-color:var(--recommend);
   box-shadow:0 0 0 2px var(--recommend);
 }
-
 .review-options .cinema.selected{
   border-color:var(--cinema);
   box-shadow:0 0 0 2px var(--cinema);
@@ -176,7 +156,7 @@ textarea{
   resize:none;
 }
 
-/* MORE LIKE THIS */
+/* MORE */
 .more{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
@@ -187,10 +167,10 @@ textarea{
   border-radius:12px;
 }
 .more p{
-  font-size:13px;
-  margin-top:6px;
   text-align:center;
   color:var(--muted);
+  margin-top:6px;
+  font-size:13px;
 }
 
 footer{
@@ -199,89 +179,39 @@ footer{
   color:var(--muted);
   border-top:1px solid #1f1f1f;
 }
-  .hero {
-  height: 260px;
-  background: 
-    linear-gradient(to bottom, rgba(0,0,0,0.2), #050507),
-    url("https://image.tmdb.org/t/p/original/rr7E0NoGKxvbkb89eR1GwfoYjpA.jpg");
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-end;
-  padding: 20px;
-}
-/*
-.hero .trailer {
-  background: var(--cinema);
-  font-weight: 600;*/
-}
 </style>
 </head>
 
 <body>
-  <div class="hero">
-  <div>
-    <h1>Fight Club</h1>
-    <p class="meta">1999 · Psychological · David Fincher</p>
-    <a class="trailer" href="https://youtu.be/qtRKdVHc-cE" target="_blank">
-      ▶ Watch Trailer
-    </a>
-  </div>
-  </div>
 
- <!-- HERO -->
-<!--<div class="hero">
-  <h1>Fight Club</h1>
-  <div class="meta">1999 · Psychological · David Fincher</div>
-  <a href="https://youtu.be/qtRKdVHc-cE" target="_blank">▶ Watch Trailer</a>
-</div>-->
+<div class="hero" id="hero">
+  <div>
+    <h1 id="title">Loading...</h1>
+    <p class="meta" id="meta"></p>
+    <a id="trailer" target="_blank">▶ Watch Trailer</a>
+  </div>
+</div>
 
 <main>
 
-<!-- TOP INFO -->
 <div class="top">
-  <img class="poster" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7-sWVulpqivmNMVX-98Hq9I_IdVxVyoNyb4rFzugoxA&s=10YJlh4RoZZ_y8scaivnpjp3a9aEstvyzM9WArA0Q4B52rAVe2QX_LnAaX09rl1L_8Cc2PbJQWNHYis7A1IPhWjcldaLoJF6H5iEewcV4uVa_2w_mB4XAqzXqbGvzPnY_keVm21YEMxthJQUKLDPOKRRsaWqONKrJCnK3o65ei7xAEUeCEou5_zf7c2zMjqVH2">
+  <img class="poster" id="poster">
   <div>
-    <p>
-      An insomniac office worker forms an underground fight club that evolves into something far more dangerous.
-    </p>
+    <p id="plot"></p>
     <button class="like" id="likeBtn">♥ Like</button>
   </div>
 </div>
 
-<!-- ACTIONS -->
 <div class="actions">
   <button>Review</button>
   <button>Add to Watchlist</button>
 </div>
 
-<!-- PLOT -->
-<section>
-  <h2>Plot Summary</h2>
-  <p>
-    A nameless narrator struggles with insomnia and dissatisfaction with his life until he meets Tyler Durden,
-    forming a secret fight club that spirals out of control.
-  </p>
-</section>
-
-<!-- CAST -->
 <section>
   <h2>Cast</h2>
-  <div class="cast">
-    <span>Brad Pitt</span>
-    <span>Edward Norton</span>
-    <span>Helena Bonham Carter</span>
-  </div>
+  <div class="cast" id="cast"></div>
 </section>
 
-<!-- CREW -->
-<section>
-  <h2>Director & Producer</h2>
-  <p>Director: David Fincher</p>
-  <p>Producer: Art Linson</p>
-</section>
-
-<!-- REVIEW OPTIONS -->
 <section>
   <h2>Your Rating</h2>
   <div class="review-options">
@@ -292,60 +222,50 @@ footer{
   </div>
 </section>
 
-<!-- REVIEW BOX -->
 <section>
   <h2>Your Review</h2>
-  <textarea maxlength="1000" placeholder="Write your review (max 1000 words)..."></textarea>
-</section>
-
-<!-- MORE LIKE THIS -->
-<section>
-  <h2>More Like This</h2>
-  <div class="more">
-    <div>
-      <img src="https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg">
-      <p>The Godfather</p>
-    </div>
-    <div>
-      <img src="https://image.tmdb.org/t/p/w500/hTP1DtLGFamjfu8WqjnuQdP1n4i.jpg">
-      <p>Attack on Titan</p>
-    </div>
-    <div>
-      <img src="https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg">
-      <p>Breaking Bad</p>
-    </div>
-  </div>
+  <textarea maxlength="1000" placeholder="Write your review..."></textarea>
 </section>
 
 </main>
 
-<footer>
-© CineHub — Built for cinephiles.
-</footer>
+<footer>© CineHub</footer>
 
+<script src="data.js"></script>
 <script>
-document.getElementById("likeBtn").onclick = function(){
+const id = new URLSearchParams(window.location.search).get("id");
+const data = CONTENT[id];
+
+if(!data){
+  document.body.innerHTML="<h2 style='text-align:center;color:white'>Not Found</h2>";
+}else{
+  document.getElementById("title").innerText=data.title;
+  document.getElementById("meta").innerText=`${data.year} · ${data.genre}`;
+  document.getElementById("plot").innerText=data.plot;
+  document.getElementById("poster").src=data.poster;
+  document.getElementById("trailer").href=data.trailer;
+  document.getElementById("hero").style.backgroundImage=
+    `linear-gradient(to bottom, rgba(0,0,0,.25), #0b0b10), url(${data.backdrop})`;
+
+  data.cast.forEach(c=>{
+    const s=document.createElement("span");
+    s.innerText=c;
+    document.getElementById("cast").appendChild(s);
+  });
+}
+
+document.getElementById("likeBtn").onclick=function(){
   this.classList.toggle("active");
 };
-</script>
-<script>
-const reviewBtns = document.querySelectorAll('.review-options button');
-  document.querySelector('.review-options .onetime').classList.add('selected');
 
-reviewBtns.forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    reviewBtns.forEach(b=>b.classList.remove('selected'));
-    btn.classList.add('selected');
-  });
+document.querySelectorAll(".review-options button").forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll(".review-options button")
+      .forEach(b=>b.classList.remove("selected"));
+    btn.classList.add("selected");
+  };
 });
 </script>
+
 </body>
-
 </html>
-
-
-
-
-
-
-
