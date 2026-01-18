@@ -1,131 +1,66 @@
 <!DOCTYPE html>
-<html lang="en" class="dark-mode">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineVerse | Where Films Find Voice</title>
+    <title>FilmVerdict | Movie Reviews</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Theme Toggle -->
-    <div class="theme-toggle">
-        <button id="themeBtn" aria-label="Toggle theme">
-            <i class="fas fa-moon"></i>
-        </button>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="glass-nav">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-brand">
-                <span class="cine">CINE</span><span class="verse">VERSE</span>
-                <div class="brand-sub">where films find voice</div>
-            </div>
-            <div class="nav-menu">
-                <a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a>
-                <a href="#movies" class="nav-link"><i class="fas fa-film"></i> Movies</a>
-                <a href="#series" class="nav-link"><i class="fas fa-tv"></i> Series</a>
-                <a href="#anime" class="nav-link"><i class="fas fa-gamepad"></i> Anime</a>
-                <a href="#trending" class="nav-link highlight"><i class="fas fa-fire"></i> Trending</a>
+            <a href="index.html" class="logo">🎬 <span>FilmVerdict</span></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#movies">Movies</a>
+                <a href="#series">Series</a>
+                <a href="#anime">Anime</a>
+                <a href="#about">About</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Discover <span class="gradient-text">Cinematic</span> Truths</h1>
-            <p class="hero-subtitle">Unbiased reviews. Collective wisdom. Your next favorite watch.</p>
-            <div class="search-bar glass">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Search movies, series, anime...">
-                <button class="search-btn"><i class="fas fa-arrow-right"></i></button>
-            </div>
-        </div>
-        <div class="hero-bg"></div>
-    </section>
-
     <!-- Main Content -->
     <main class="container">
-        <!-- Filter Tabs -->
-        <div class="filter-tabs">
-            <div class="tabs">
-                <button class="tab active" data-filter="all"><i class="fas fa-globe"></i> All</button>
-                <button class="tab" data-filter="movie"><i class="fas fa-film"></i> Movies</button>
-                <button class="tab" data-filter="series"><i class="fas fa-tv"></i> Series</button>
-                <button class="tab" data-filter="anime"><i class="fas fa-gamepad"></i> Anime</button>
-                <button class="tab highlight"><i class="fas fa-chart-line"></i> Trending</button>
-            </div>
+        <h1 class="page-title">What's Trending</h1>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="movie">Movies</button>
+            <button class="filter-btn" data-filter="series">Series</button>
+            <button class="filter-btn" data-filter="anime">Anime</button>
         </div>
 
-        <!-- Movie Grid -->
+        <!-- Movie Grid will be populated by JavaScript -->
         <div id="movie-grid" class="movie-grid">
-            <!-- Cards will be loaded by JavaScript -->
-            <div class="loading-cards">
-                <div class="card-skeleton"></div>
-                <div class="card-skeleton"></div>
-                <div class="card-skeleton"></div>
-                <div class="card-skeleton"></div>
-            </div>
-        </div>
-
-        <!-- Featured Review -->
-        <div class="featured-review glass">
-            <div class="review-header">
-                <h3><i class="fas fa-crown"></i> Featured Review of the Week</h3>
-                <div class="rating-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <span>4.7/5</span>
+            <!-- Example of one card (JavaScript will create these) -->
+            <!--
+            <div class="movie-card" data-category="movie" data-id="dune-2">
+                <img src="https://via.placeholder.com/300x450" alt="Movie Poster" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">Dune: Part Two</h3>
+                    <p class="movie-rating"><i class="fas fa-star"></i> 8.8</p>
+                    <p class="movie-genre">Sci-Fi, Adventure</p>
+                    <a href="movie.html?id=dune-2" class="detail-btn">View Details & Review</a>
                 </div>
             </div>
-            <div class="review-content">
-                <p>"Dune: Part Two isn't just a movie; it's a cinematic event. Villeneuve crafts a masterpiece that balances intimate character moments with epic-scale storytelling."</p>
-                <div class="review-author">
-                    <img src="https://i.pravatar.cc/40?img=1" alt="Reviewer">
-                    <div>
-                        <strong>Alex Morgan</strong>
-                        <span>Cinema Critic</span>
-                    </div>
-                </div>
-            </div>
+            -->
         </div>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-brand">
-                <h3>CINEVERSE</h3>
-                <p>A community-driven platform for authentic film reviews</p>
-            </div>
+            <p>&copy; 2023 FilmVerdict. All rights reserved.</p>
+            <p>This site uses data from TMDB and YouTube. Made with ❤️ for cinephiles.</p>
             <div class="footer-links">
-                <a href="#">About</a>
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
-                <a href="#">Contact</a>
-                <a href="#">API</a>
-            </div>
-            <div class="footer-social">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-discord"></i></a>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 CineVerse. All rights reserved. Data provided by TMDB.</p>
+                <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#contact">Contact</a>
             </div>
         </div>
     </footer>
 
+    <!-- Link to JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
