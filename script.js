@@ -8,7 +8,7 @@ const moviesDatabase = {
         id: "dune-2",
         title: "Dune: Part Two",
         category: "movie",
-        poster: "https://m.media-amazon.com/images/M/MV5BODI0YjNhNjUtYzE2MC00ZDI1LWEwM2MtYWY5ZThlZGM5YzBjXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_FMjpg_UX1000_.jpg", // Use actual image URL
+        poster: "https://imgs.search.brave.com/2DzH6NMQ9N4O4fyYcywt763dRU5SG5DiJti3ELJnBS4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NjF2M01WNkRXd0wu/anBn", // Use actual image URL
         rating: 8.8,
         genreTags: "Sci-Fi, Adventure, Epic",
         year: 2024,
@@ -254,4 +254,5 @@ function displayMovieDetail(movieId) {
             alert(`You voted: "${this.textContent.split(' ')[0]}". Thanks! (Note: This resets on refresh without a backend)`);
         });
     });
+
 }
