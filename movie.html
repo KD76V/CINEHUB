@@ -1,39 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark-mode">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Details | FilmVerdict</title>
+    <title>Movie Details | CineVerse</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For Pie Chart -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <nav class="navbar">
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button id="themeBtn" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
         <div class="nav-container">
-            <a href="index.html" class="logo">🎬 <span>FilmVerdict</span></a>
-            <div class="nav-links">
-                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            <div class="nav-brand">
+                <span class="cine">CINE</span><span class="verse">VERSE</span>
             </div>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Explore
+            </a>
         </div>
     </nav>
 
-    <main class="container movie-detail-container">
-        <!-- The content of this entire page will be filled by JavaScript (script.js) -->
+    <!-- Movie Detail Container -->
+    <main class="movie-detail-container">
+        <!-- Content will be loaded by JavaScript -->
         <div id="movie-detail-content">
-            <!-- JavaScript will put everything here -->
-            <p>Loading movie details...</p>
+            <div class="loading-detail">
+                <div class="poster-skeleton"></div>
+                <div class="info-skeleton">
+                    <div class="line"></div>
+                    <div class="line short"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line short"></div>
+                </div>
+            </div>
         </div>
     </main>
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2023 FilmVerdict. All rights reserved.</p>
-            <p>This site uses data from TMDB and YouTube. Made with ❤️ for cinephiles.</p>
+            <p>Experience cinema differently with CineVerse</p>
+            <p>&copy; 2024 | Powered by community love and TMDB</p>
         </div>
     </footer>
 
-    <!-- Link to the same script.js -->
     <script src="script.js"></script>
 </body>
 </html>
