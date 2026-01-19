@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineVerse | Movie Reviews</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2503/2503508.png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-film"></i>
+                <span>CineVerse</span>
+            </a>
+            <div class="nav-search">
+                <form id="searchForm">
+                    <input type="text" id="searchInput" placeholder="Search any movie, series, anime...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
+                <a href="#"><i class="fas fa-fire"></i> Trending</a>
+                <a href="#"><i class="fas fa-star"></i> Top Rated</a>
+                <a href="#"><i class="fas fa-clock"></i> Watchlist</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="gradient-text">Review Any Movie</span>
+                <br>In One Click
+            </h1>
+            <p class="hero-subtitle">Search any movie, series, or anime. Watch trailer. Read reviews. Add your verdict.</p>
+            
+            <!-- Main Search -->
+            <div class="main-search">
+                <form id="mainSearchForm">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="mainSearchInput" placeholder="Try: Dune, Stranger Things, Attack on Titan...">
+                        <button type="submit" class="search-btn">
+                            <i class="fas fa-arrow-right"></i> Search
+                        </button>
+                    </div>
+                    <div class="search-tips">
+                        <span class="tip">Try: <strong>Movie names</strong>, <strong>TV shows</strong>, <strong>Anime titles</strong></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Section -->
+    <section class="trending-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-fire"></i> Trending Now</h2>
+                <div class="trending-filters">
+                    <button class="filter-btn active" data-type="movie">Movies</button>
+                    <button class="filter-btn" data-type="tv">TV Shows</button>
+                    <button class="filter-btn" data-type="anime">Anime</button>
+                </div>
+            </div>
+            
+            <div id="trendingContent" class="trending-grid">
+                <!-- Trending movies will load here -->
+                <div class="loading-cards">
+                    <div class="card-skeleton"></div>
+                    <div class="card-skeleton"></div>
+                    <div class="card-skeleton"></div>
+                    <div class="card-skeleton"></div>
+                    <div class="card-skeleton"></div>
+                    <div class="card-skeleton"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Search Anything</h3>
+                    <p>Search for any movie, TV show, or anime. Our system fetches real-time data.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>Get Full Details</h3>
+                    <p>View trailer, cast, ratings, reviews, and where to watch instantly.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3>Add Your Review</h3>
+                    <p>Rate and review with our unique system. Help others decide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Searches -->
+    <section class="popular-searches">
+        <div class="container">
+            <h2 class="section-title">Popular Searches</h2>
+            <div class="search-tags">
+                <a href="#" class="search-tag" data-search="Dune">Dune</a>
+                <a href="#" class="search-tag" data-search="Oppenheimer">Oppenheimer</a>
+                <a href="#" class="search-tag" data-search="Stranger Things">Stranger Things</a>
+                <a href="#" class="search-tag" data-search="Attack on Titan">Attack on Titan</a>
+                <a href="#" class="search-tag" data-search="Breaking Bad">Breaking Bad</a>
+                <a href="#" class="search-tag" data-search="Jujutsu Kaisen">Jujutsu Kaisen</a>
+                <a href="#" class="search-tag" data-search="Game of Thrones">Game of Thrones</a>
+                <a href="#" class="search-tag" data-search="Demon Slayer">Demon Slayer</a>
+                <a href="#" class="search-tag" data-search="The Batman">The Batman</a>
+                <a href="#" class="search-tag" data-search="One Piece">One Piece</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-film"></i> CineVerse</h3>
+                    <p>Your go-to platform for movie reviews and recommendations.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">About</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Contact</a>
+                    <a href="#">API</a>
+                </div>
+                <div class="footer-info">
+                    <p>Powered by TMDB API. Data updates in real-time.</p>
+                    <p class="copyright">&copy; 2024 CineVerse. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>
