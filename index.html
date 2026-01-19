@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2503/2503508.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/2503/2503508.png">
 </head>
 <body>
     <!-- Navigation -->
@@ -21,15 +21,15 @@
             </a>
             <div class="nav-search">
                 <form id="searchForm">
-                    <input type="text" id="searchInput" placeholder="Search any movie, series, anime...">
+                    <input type="text" id="searchInput" placeholder="Search movies...">
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
             <div class="nav-links">
                 <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
-                <a href="#"><i class="fas fa-fire"></i> Trending</a>
-                <a href="#"><i class="fas fa-star"></i> Top Rated</a>
-                <a href="#"><i class="fas fa-clock"></i> Watchlist</a>
+                <a href="#" id="trendingLink"><i class="fas fa-fire"></i> Trending</a>
+                <a href="#" id="topRatedLink"><i class="fas fa-star"></i> Top Rated</a>
+                <a href="#" id="watchlistLink"><i class="fas fa-clock"></i> Watchlist</a>
             </div>
         </div>
     </nav>
@@ -38,25 +38,45 @@
     <section class="hero">
         <div class="hero-content">
             <h1 class="hero-title">
-                <span class="gradient-text">Review Any Movie</span>
-                <br>In One Click
+                <span class="gradient-text">Discover & Review</span>
+                <br>Any Movie in Seconds
             </h1>
             <p class="hero-subtitle">Search any movie, series, or anime. Watch trailer. Read reviews. Add your verdict.</p>
             
             <!-- Main Search -->
             <div class="main-search">
-                <form id="mainSearchForm">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="mainSearchInput" placeholder="Try: Dune, Stranger Things, Attack on Titan...">
-                        <button type="submit" class="search-btn">
-                            <i class="fas fa-arrow-right"></i> Search
-                        </button>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="mainSearchInput" placeholder="Search movies, series, anime...">
+                    <div class="search-filters">
+                        <button class="filter-btn active" data-type="all">All</button>
+                        <button class="filter-btn" data-type="movie">Movies</button>
+                        <button class="filter-btn" data-type="tv">TV Shows</button>
+                        <button class="filter-btn" data-type="anime">Anime</button>
                     </div>
-                    <div class="search-tips">
-                        <span class="tip">Try: <strong>Movie names</strong>, <strong>TV shows</strong>, <strong>Anime titles</strong></span>
+                </div>
+                
+                <!-- Search Results -->
+                <div id="searchResults" class="search-results">
+                    <!-- Results will appear here -->
+                </div>
+                
+                <!-- Popular Genres -->
+                <div class="popular-genres">
+                    <h3><i class="fas fa-tags"></i> Browse by Genre</h3>
+                    <div class="genre-tags">
+                        <button class="genre-tag" data-genre="28">Action</button>
+                        <button class="genre-tag" data-genre="35">Comedy</button>
+                        <button class="genre-tag" data-genre="18">Drama</button>
+                        <button class="genre-tag" data-genre="27">Horror</button>
+                        <button class="genre-tag" data-genre="878">Sci-Fi</button>
+                        <button class="genre-tag" data-genre="14">Fantasy</button>
+                        <button class="genre-tag" data-genre="10749">Romance</button>
+                        <button class="genre-tag" data-genre="9648">Mystery</button>
+                        <button class="genre-tag" data-genre="53">Thriller</button>
+                        <button class="genre-tag" data-genre="16">Animation</button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </section>
@@ -67,9 +87,8 @@
             <div class="section-header">
                 <h2><i class="fas fa-fire"></i> Trending Now</h2>
                 <div class="trending-filters">
-                    <button class="filter-btn active" data-type="movie">Movies</button>
-                    <button class="filter-btn" data-type="tv">TV Shows</button>
-                    <button class="filter-btn" data-type="anime">Anime</button>
+                    <button class="trending-filter active" data-type="movie">Movies</button>
+                    <button class="trending-filter" data-type="tv">TV Shows</button>
                 </div>
             </div>
             
@@ -87,6 +106,55 @@
         </div>
     </section>
 
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title">Browse by Category</h2>
+            <div class="categories-grid">
+                <div class="category-card" data-type="movie" data-genre="28">
+                    <i class="fas fa-explosion"></i>
+                    <h3>Action</h3>
+                    <p>High-octane movies</p>
+                </div>
+                <div class="category-card" data-type="movie" data-genre="18">
+                    <i class="fas fa-theater-masks"></i>
+                    <h3>Drama</h3>
+                    <p>Emotional stories</p>
+                </div>
+                <div class="category-card" data-type="movie" data-genre="878">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Sci-Fi</h3>
+                    <p>Future & space</p>
+                </div>
+                <div class="category-card" data-type="movie" data-genre="35">
+                    <i class="fas fa-laugh"></i>
+                    <h3>Comedy</h3>
+                    <p>Laugh out loud</p>
+                </div>
+                <div class="category-card" data-type="movie" data-genre="27">
+                    <i class="fas fa-ghost"></i>
+                    <h3>Horror</h3>
+                    <p>Scary thrillers</p>
+                </div>
+                <div class="category-card" data-type="movie" data-genre="16">
+                    <i class="fas fa-film"></i>
+                    <h3>Animation</h3>
+                    <p>Animated films</p>
+                </div>
+                <div class="category-card" data-type="tv" data-genre="10765">
+                    <i class="fas fa-tv"></i>
+                    <h3>TV Series</h3>
+                    <p>Binge-worthy shows</p>
+                </div>
+                <div class="category-card" data-type="movie" data-genre="12">
+                    <i class="fas fa-mountain"></i>
+                    <h3>Adventure</h3>
+                    <p>Epic journeys</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- How It Works -->
     <section class="how-it-works">
         <div class="container">
@@ -97,21 +165,21 @@
                         <i class="fas fa-search"></i>
                     </div>
                     <h3>Search Anything</h3>
-                    <p>Search for any movie, TV show, or anime. Our system fetches real-time data.</p>
+                    <p>Search for any movie, TV show, or anime. Real-time results with filters.</p>
                 </div>
                 <div class="step">
                     <div class="step-icon">
                         <i class="fas fa-film"></i>
                     </div>
                     <h3>Get Full Details</h3>
-                    <p>View trailer, cast, ratings, reviews, and where to watch instantly.</p>
+                    <p>View trailer, cast, ratings, and where to watch instantly.</p>
                 </div>
                 <div class="step">
                     <div class="step-icon">
                         <i class="fas fa-edit"></i>
                     </div>
                     <h3>Add Your Review</h3>
-                    <p>Rate and review with our unique system. Help others decide.</p>
+                    <p>Rate with stars, choose verdict, and write your thoughts.</p>
                 </div>
             </div>
         </div>
@@ -122,16 +190,16 @@
         <div class="container">
             <h2 class="section-title">Popular Searches</h2>
             <div class="search-tags">
-                <a href="#" class="search-tag" data-search="Dune">Dune</a>
-                <a href="#" class="search-tag" data-search="Oppenheimer">Oppenheimer</a>
-                <a href="#" class="search-tag" data-search="Stranger Things">Stranger Things</a>
-                <a href="#" class="search-tag" data-search="Attack on Titan">Attack on Titan</a>
-                <a href="#" class="search-tag" data-search="Breaking Bad">Breaking Bad</a>
-                <a href="#" class="search-tag" data-search="Jujutsu Kaisen">Jujutsu Kaisen</a>
-                <a href="#" class="search-tag" data-search="Game of Thrones">Game of Thrones</a>
-                <a href="#" class="search-tag" data-search="Demon Slayer">Demon Slayer</a>
-                <a href="#" class="search-tag" data-search="The Batman">The Batman</a>
-                <a href="#" class="search-tag" data-search="One Piece">One Piece</a>
+                <button class="search-tag" data-search="Dune">Dune</button>
+                <button class="search-tag" data-search="Oppenheimer">Oppenheimer</button>
+                <button class="search-tag" data-search="Stranger Things">Stranger Things</button>
+                <button class="search-tag" data-search="Attack on Titan">Attack on Titan</button>
+                <button class="search-tag" data-search="Jujutsu Kaisen">Jujutsu Kaisen</button>
+                <button class="search-tag" data-search="Game of Thrones">Game of Thrones</button>
+                <button class="search-tag" data-search="Demon Slayer">Demon Slayer</button>
+                <button class="search-tag" data-search="The Batman">The Batman</button>
+                <button class="search-tag" data-search="One Piece">One Piece</button>
+                <button class="search-tag" data-search="Breaking Bad">Breaking Bad</button>
             </div>
         </div>
     </section>
