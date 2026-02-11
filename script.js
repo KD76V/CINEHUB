@@ -214,6 +214,325 @@ function getGenreName(id, type) {
     return type === 'movie' ? movieGenres[id] || 'Unknown' : tvGenres[id] || 'Unknown';
 }
 
+// ========== SEARCH FUNCTION ==========
+let searchTimeout;
+let currentSearchType = 'all';
+
+async function performSearch(query, type = 'multi') {
+    console.log('🔍 Search Function Called!');
+    console.log('Searching for:', query, 'Type:', type);
+    
+    const searchResults = document.getElementById('searchResults');
+    if (!searchResults) {
+        console.error('❌ searchResults element not found!');
+        return;
+    }
+    
+    console.log('✅ Search results element found');
+    
+    // Show loading
+    searchResults.innerHTML = `
+        <div class="loading-results">
+            <div class="loading-spinner"></div>
+            <p>Searching for "${query}"...</p>
+        </div>
+    `;
+    searchResults.style.display = 'block';
+    
+    try {
+        console.log('🌐 Fetching from TMDB API...');
+        
+        let results = [];
+        
+        if (type === 'anime') {
+            // For anime, search in TV category
+            const response = await fetch(
+                `${TMDB_BASE_URL}/search/tv?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&language=en-US&page=1`
+            );
+            const data = await response.json();
+            console.log('📊 Anime search response:', data);
+            results = data.results || [];
+        } else if (type === 'all') {
+            // Search both movies and TV
+            const [moviesRes, tvRes] = await Promise.all([
+                fetch(`${TMDB_BASE_URL}/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&language=en-US&page=1`),
+                fetch(`${TMDB_BASE_URL}/search/tv?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&language=en-US&page=1`)
+            ]);
+            
+            const moviesData = await moviesRes.json();
+            const tvData = await tvRes.json();
+            
+            // Combine results
+            results = [...(moviesData.results || []), ...(tvData.results || [])];
+        } else {
+            const response = await fetch(
+                `${TMDB_BASE_URL}/search/${type}?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&language=en-US&page=1`
+            );
+            const data = await response.json();
+            console.log('📊 Search response:', data);
+            results = data.results || [];
+        }
+        
+        console.log('🎬 Results found:', results.length);
+        
+        if (results.length === 0) {
+            searchResults.innerHTML = `
+                <div class="no-results">
+                    <i class="fas fa-search"></i>
+                    <h3>No results for "${query}"</h3>
+                    <p>Try a different search term</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // Display results
+        let html = '';
+        results.slice(0, 10).forEach(item => {
+            const posterPath = item.poster_path 
+                ? `${TMDB_IMAGE_BASE}/w92${item.poster_path}`
+                : FALLBACK_POSTER;
+            
+            const title = item.title || item.name || 'Unknown';
+            const year = (item.release_date || item.first_air_date)?.substring(0, 4) || 'N/A';
+            const itemType = item.media_type || (item.title ? 'movie' : 'tv');
+            const rating = item.vote_average ? item.vote_average.toFixed(1) : 'N/A';
+            const id = item.id;
+            
+            html += `
+                <div class="search-result-item" data-id="${id}" data-type="${itemType}">
+                    <img src="${posterPath}" alt="${title}" class="result-poster" 
+                         onerror="this.src='${FALLBACK_POSTER}'">
+                    <div class="result-info">
+                        <div class="result-title">${title}</div>
+                        <div class="result-meta">
+                            <span>${year}</span>
+                            <span>•</span>
+                            <span>${itemType === 'movie' ? 'Movie' : 'TV Show'}</span>
+                            <span>•</span>
+                            <span class="result-rating">
+                                <i class="fas fa-star"></i>
+                                ${rating}
+                            </span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            `;
+        });
+        
+        searchResults.innerHTML = html;
+        
+        // Add click events
+        const resultItems = searchResults.querySelectorAll('.search-result-item');
+        resultItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const id = this.dataset.id;
+                const type = this.dataset.type;
+                window.location.href = `movie.html?type=${type}&id=${id}`;
+            });
+        });
+        
+    } catch (error) {
+        console.error('❌ Search error:', error);
+        searchResults.innerHTML = `
+            <div class="no-results">
+                <i class="fas fa-exclamation-circle"></i>
+                <h3>Search Failed</h3>
+                <p>Please check your internet connection</p>
+                <p style="font-size: 12px; margin-top: 10px; color: #ff6b6b;">
+                    ${error.message}
+                </p>
+            </div>
+        `;
+    }
+}
+
+function setupSearch() {
+    const searchInput = document.getElementById('mainSearchInput');
+    const searchResults = document.getElementById('searchResults');
+    const filterBtns = document.querySelectorAll('.search-filters .filter-btn');
+    const genreTags = document.querySelectorAll('.genre-tag');
+    const searchTags = document.querySelectorAll('.search-tag');
+    const categoryCards = document.querySelectorAll('.category-card');
+
+    if (!searchInput) {
+        console.error('❌ mainSearchInput not found!');
+        return;
+    }
+
+    // Live search as you type
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        const query = this.value.trim();
+        
+        if (query.length < 2) {
+            if (searchResults) searchResults.style.display = 'none';
+            return;
+        }
+        
+        searchTimeout = setTimeout(async () => {
+            await performSearch(query, currentSearchType);
+        }, 500);
+    });
+
+    // Search filter buttons
+    if (filterBtns.length > 0) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentSearchType = this.dataset.type;
+                
+                const query = searchInput.value.trim();
+                if (query && query.length >= 2) {
+                    performSearch(query, currentSearchType);
+                }
+            });
+        });
+    }
+
+    // Genre tags
+    if (genreTags.length > 0) {
+        genreTags.forEach(tag => {
+            tag.addEventListener('click', async function() {
+                const genreId = this.dataset.genre;
+                searchByGenre(genreId);
+            });
+        });
+    }
+
+    // Popular search tags
+    if (searchTags.length > 0) {
+        searchTags.forEach(tag => {
+            tag.addEventListener('click', function(e) {
+                e.preventDefault();
+                const query = this.dataset.search;
+                if (searchInput) {
+                    searchInput.value = query;
+                    searchInput.focus();
+                    performSearch(query, currentSearchType);
+                }
+            });
+        });
+    }
+
+    // Category cards
+    if (categoryCards.length > 0) {
+        categoryCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const type = this.dataset.type;
+                const genre = this.dataset.genre;
+                
+                // Set active filter
+                filterBtns.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.type === type || btn.dataset.type === 'all') {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                // Search by genre
+                if (genre) {
+                    searchByGenre(genre, type);
+                }
+            });
+        });
+    }
+}
+
+async function searchByGenre(genreId, type = 'movie') {
+    const searchInput = document.getElementById('mainSearchInput');
+    if (searchInput) {
+        searchInput.value = '';
+    }
+    
+    const searchResults = document.getElementById('searchResults');
+    if (!searchResults) return;
+    
+    searchResults.innerHTML = `
+        <div class="loading-results">
+            <div class="loading-spinner"></div>
+            <p>Loading ${type} by genre...</p>
+        </div>
+    `;
+    searchResults.style.display = 'block';
+    
+    try {
+        const response = await fetch(
+            `${TMDB_BASE_URL}/discover/${type}?api_key=${TMDB_API_KEY}&with_genres=${genreId}&sort_by=popularity.desc&language=en-US&page=1`
+        );
+        const data = await response.json();
+        const results = data.results || [];
+        
+        // Use the same display function
+        if (results.length === 0) {
+            searchResults.innerHTML = `
+                <div class="no-results">
+                    <i class="fas fa-search"></i>
+                    <h3>No results found</h3>
+                    <p>Try a different genre</p>
+                </div>
+            `;
+            return;
+        }
+        
+        let html = '';
+        results.slice(0, 10).forEach(item => {
+            const posterPath = item.poster_path 
+                ? `${TMDB_IMAGE_BASE}/w92${item.poster_path}`
+                : FALLBACK_POSTER;
+            
+            const title = item.title || item.name || 'Unknown';
+            const year = (item.release_date || item.first_air_date)?.substring(0, 4) || 'N/A';
+            const rating = item.vote_average ? item.vote_average.toFixed(1) : 'N/A';
+            const id = item.id;
+            
+            html += `
+                <div class="search-result-item" data-id="${id}" data-type="${type}">
+                    <img src="${posterPath}" alt="${title}" class="result-poster" 
+                         onerror="this.src='${FALLBACK_POSTER}'">
+                    <div class="result-info">
+                        <div class="result-title">${title}</div>
+                        <div class="result-meta">
+                            <span>${year}</span>
+                            <span>•</span>
+                            <span>${type === 'movie' ? 'Movie' : 'TV Show'}</span>
+                            <span>•</span>
+                            <span class="result-rating">
+                                <i class="fas fa-star"></i>
+                                ${rating}
+                            </span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            `;
+        });
+        
+        searchResults.innerHTML = html;
+        
+        // Add click events
+        const resultItems = searchResults.querySelectorAll('.search-result-item');
+        resultItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const id = this.dataset.id;
+                const type = this.dataset.type;
+                window.location.href = `movie.html?type=${type}&id=${id}`;
+            });
+        });
+        
+    } catch (error) {
+        console.error('Genre search error:', error);
+        searchResults.innerHTML = `
+            <div class="no-results">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>Failed to load genre. Please try again.</p>
+            </div>
+        `;
+    }
+}
+
 async function renderMovieDetails() {
     const urlParams = new URLSearchParams(window.location.search);
     const type = urlParams.get('type') || 'movie';
@@ -626,14 +945,7 @@ function setupEventListeners() {
 
 // ========== INITIALIZATION ==========
 document.addEventListener('DOMContentLoaded', function() {
-    // Check which page we're on
-    if (window.location.pathname.includes('movie.html')) {
-        renderMovieDetails();
-    } else {
-        // Homepage
-        renderTrending();
-        setupEventListeners();
-    }
+    console.log('🚀 CineVerse Initializing...');
     
     // Add notification styles
     if (!document.querySelector('#notification-styles')) {
@@ -648,8 +960,84 @@ document.addEventListener('DOMContentLoaded', function() {
                 from { transform: translateX(0); opacity: 1; }
                 to { transform: translateX(100%); opacity: 0; }
             }
+            .loading-spinner {
+                width: 40px;
+                height: 40px;
+                border: 3px solid var(--border);
+                border-top-color: var(--accent);
+                border-radius: 50%;
+                margin: 0 auto 1rem;
+                animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
         `;
         document.head.appendChild(style);
+    }
+    
+    // Check which page we're on
+    if (window.location.pathname.includes('movie.html')) {
+        console.log('📄 Movie Detail Page');
+        renderMovieDetails();
+    } else {
+        console.log('🏠 Homepage');
+        
+        // Initialize search FIRST
+        console.log('🔧 Setting up search...');
+        setupSearch();
+        
+        // Load trending movies
+        const trendingGrid = document.getElementById('trendingContent');
+        if (trendingGrid) {
+            console.log('🔥 Loading trending movies...');
+            fetchTrending('movie').then(movies => {
+                console.log(`🎬 Found ${movies.length} trending movies`);
+                trendingGrid.innerHTML = '';
+                movies.slice(0, 6).forEach(movie => {
+                    const card = createMediaCard(movie, 'movie');
+                    trendingGrid.appendChild(card);
+                });
+            }).catch(error => {
+                console.error('❌ Error loading trending:', error);
+                trendingGrid.innerHTML = `
+                    <div class="error-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Failed to load trending movies</p>
+                    </div>
+                `;
+            });
+        } else {
+            console.error('❌ trendingContent element not found!');
+        }
+        
+        // Trending filters
+        const trendingFilters = document.querySelectorAll('.trending-filter');
+        if (trendingFilters.length > 0) {
+            console.log('🔘 Setting up trending filters...');
+            trendingFilters.forEach(btn => {
+                btn.addEventListener('click', async function() {
+                    trendingFilters.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const type = this.dataset.type;
+                    const trendingGrid = document.getElementById('trendingContent');
+                    
+                    try {
+                        const movies = await fetchTrending(type);
+                        trendingGrid.innerHTML = '';
+                        movies.slice(0, 6).forEach(movie => {
+                            const card = createMediaCard(movie, type);
+                            trendingGrid.appendChild(card);
+                        });
+                    } catch (error) {
+                        console.error('Error loading trending:', error);
+                    }
+                });
+            });
+        }
+        
+        console.log('✅ Homepage initialization complete!');
     }
 });
 
@@ -658,4 +1046,5 @@ export {
     searchMedia,
     getMediaDetails,
     createMediaCard
+
 };
