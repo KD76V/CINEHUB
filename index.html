@@ -44,20 +44,38 @@
             <p class="hero-subtitle">Search any movie, series, or anime. Watch trailer. Read reviews. Add your verdict.</p>
             
             <!-- Main Search -->
-            <div class="main-search">
-                <form id="mainSearchForm">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="mainSearchInput" placeholder="Try: Dune, Stranger Things, Attack on Titan...">
-                        <button type="submit" class="search-btn">
-                            <i class="fas fa-arrow-right"></i> Search
-                        </button>
-                    </div>
-                    <div class="search-tips">
-                        <span class="tip">Try: <strong>Movie names</strong>, <strong>TV shows</strong>, <strong>Anime titles</strong></span>
-                    </div>
-                </form>
-            </div>
+<div class="main-search">
+    <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="mainSearchInput" placeholder="Search movies, series, anime...">
+        <div class="search-filters">
+            <button class="filter-btn active" data-type="all">All</button>
+            <button class="filter-btn" data-type="movie">Movies</button>
+            <button class="filter-btn" data-type="tv">TV Shows</button>
+            <button class="filter-btn" data-type="anime">Anime</button>
+        </div>
+    </div>
+    
+    <!-- Search Results Container (this is critical) -->
+    <div id="searchResults" class="search-results"></div>
+    
+    <!-- Popular Genres -->
+    <div class="popular-genres">
+        <h3><i class="fas fa-tags"></i> Browse by Genre</h3>
+        <div class="genre-tags">
+            <button class="genre-tag" data-genre="28">Action</button>
+            <button class="genre-tag" data-genre="35">Comedy</button>
+            <button class="genre-tag" data-genre="18">Drama</button>
+            <button class="genre-tag" data-genre="27">Horror</button>
+            <button class="genre-tag" data-genre="878">Sci-Fi</button>
+            <button class="genre-tag" data-genre="14">Fantasy</button>
+            <button class="genre-tag" data-genre="10749">Romance</button>
+            <button class="genre-tag" data-genre="9648">Mystery</button>
+            <button class="genre-tag" data-genre="53">Thriller</button>
+            <button class="genre-tag" data-genre="16">Animation</button>
+        </div>
+    </div>
+</div>
         </div>
     </section>
 
@@ -162,4 +180,5 @@
     <!-- Scripts -->
     <script type="module" src="script.js"></script>
 </body>
+
 </html>
