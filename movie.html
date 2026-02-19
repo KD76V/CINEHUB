@@ -49,15 +49,7 @@
                 </div>
             </div>
 
-            <!-- Similar Movies -->
-            <section class="similar-section">
-                <h2><i class="fas fa-th-large"></i> Similar Movies</h2>
-                <div id="similarMovies" class="similar-grid">
-                    <!-- Will be loaded by JavaScript -->
-                </div>
-            </section>
-
-            <!-- Reviews Section -->
+            <!-- Reviews Section (MOVED UP) -->
             <section class="reviews-section">
                 <h2><i class="fas fa-comments"></i> Community Reviews</h2>
                 <div class="reviews-container">
@@ -76,7 +68,7 @@
                         </div>
                     </div>
 
-                    <!-- Your Review -->
+                    <!-- Your Review (NO STARS) -->
                     <div class="your-review">
                         <h3><i class="fas fa-edit"></i> Your Review</h3>
                         <div class="review-form">
@@ -97,16 +89,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="review-rating">
-                                <h4>Rating (1-5 stars):</h4>
-                                <div class="star-rating">
-                                    <i class="fas fa-star" data-rating="1"></i>
-                                    <i class="far fa-star" data-rating="2"></i>
-                                    <i class="far fa-star" data-rating="3"></i>
-                                    <i class="far fa-star" data-rating="4"></i>
-                                    <i class="far fa-star" data-rating="5"></i>
-                                </div>
-                            </div>
+                            <!-- STAR RATING REMOVED -->
                             <div class="review-text">
                                 <h4>Write your review:</h4>
                                 <textarea id="reviewText" placeholder="Share your thoughts about this movie... (What worked? What didn't?)" maxlength="500"></textarea>
@@ -121,12 +104,19 @@
                     <!-- Other Reviews -->
                     <div class="community-reviews" id="communityReviews">
                         <h3><i class="fas fa-users"></i> From the Community</h3>
-                        <!-- Reviews will be loaded here -->
                         <div class="no-reviews">
                             <i class="fas fa-comment-slash"></i>
                             <p>No reviews yet. Be the first to review!</p>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- Similar Movies (NOW BELOW REVIEWS) -->
+            <section class="similar-section">
+                <h2><i class="fas fa-th-large"></i> Similar Movies</h2>
+                <div id="similarMovies" class="similar-grid">
+                    <!-- Will be loaded by JavaScript -->
                 </div>
             </section>
         </div>
