@@ -8,7 +8,7 @@ import {
     FALLBACK_CAST 
 } from './config.js';
 
-async function loadPersonDetails() {
+export async function loadPersonDetails() {
     const urlParams = new URLSearchParams(window.location.search);
     const personName = urlParams.get('name');
     
@@ -17,21 +17,19 @@ async function loadPersonDetails() {
         return;
     }
     
-    // Search for person
     try {
         const searchResponse = await fetch(
             `${TMDB_BASE_URL}/search/person?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(personName)}`
         );
         const searchData = await searchResponse.json();
         
-        if (!searchData.results || searchData.results.length === 0) {
+        if (!searchData.results?.length) {
             showError('Person not found');
             return;
         }
         
         const personId = searchData.results[0].id;
         
-        // Fetch person details
         const [personRes, creditsRes] = await Promise.all([
             fetch(`${TMDB_BASE_URL}/person/${personId}?api_key=${TMDB_API_KEY}&language=en-US`),
             fetch(`${TMDB_BASE_URL}/person/${personId}/combined_credits?api_key=${TMDB_API_KEY}&language=en-US`)
@@ -54,12 +52,10 @@ function renderPersonPage(person, credits) {
     
     if (!contentDiv || !filmographyGrid) return;
     
-    // Calculate age
     const birthDate = person.birthday ? new Date(person.birthday) : null;
     const deathDate = person.deathday ? new Date(person.deathday) : null;
     const age = birthDate ? calculateAge(birthDate, deathDate) : null;
     
-    // Profile image
     const profilePath = person.profile_path 
         ? `${TMDB_IMAGE_BASE}/w500${person.profile_path}`
         : FALLBACK_CAST;
@@ -109,8 +105,23 @@ function renderPersonPage(person, credits) {
         </div>
     `;
     
-    // Filmography
-    const allCredits = [...(credits.cast || []), ...(credits.crew || [])];
+    // Filter: Only movies and TV shows, no talk shows/guest appearances
+    const validCast = (credits.cast || []).filter(item => {
+        const title = item.title || item.name || '';
+        return !title.toLowerCase().includes('interview') &&
+               !title.toLowerCase().includes('talk show') &&
+               !title.toLowerCase().includes('behind the scenes') &&
+               !item.character?.toLowerCase().includes('self') &&
+               !item.character?.toLowerCase().includes('host') &&
+               !item.character?.toLowerCase().includes('guest');
+    });
+    
+    const validCrew = (credits.crew || []).filter(item => {
+        return ['Director', 'Producer', 'Writer', 'Screenplay', 'Story'].includes(item.job) &&
+               !item.job?.toLowerCase().includes('thanks');
+    });
+    
+    const allCredits = [...validCast, ...validCrew];
     const uniqueCredits = [];
     const seenIds = new Set();
     
@@ -121,32 +132,27 @@ function renderPersonPage(person, credits) {
         }
     });
     
-    // Sort by popularity
     uniqueCredits.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
     
     filmographyGrid.innerHTML = '';
-    uniqueCredits.slice(0, 12).forEach(item => {
-        const card = createFilmCard(item, person.name);
-        filmographyGrid.appendChild(card);
+    uniqueCredits.slice(0, 20).forEach(item => {
+        filmographyGrid.appendChild(createFilmCard(item));
     });
+    
+    if (uniqueCredits.length === 0) {
+        filmographyGrid.innerHTML = '<div class="no-results">No movies or shows found</div>';
+    }
 }
 
-function createFilmCard(item, personName) {
-    const posterPath = item.poster_path 
-        ? `${TMDB_IMAGE_BASE}/w342${item.poster_path}`
-        : FALLBACK_POSTER;
-    
+function createFilmCard(item) {
+    const posterPath = item.poster_path ? `${TMDB_IMAGE_BASE}/w342${item.poster_path}` : FALLBACK_POSTER;
     const title = item.title || item.name || 'Unknown';
     const year = (item.release_date || item.first_air_date)?.substring(0, 4) || 'N/A';
     const type = item.title ? 'movie' : 'tv';
     
-    // Find the character/role
     let role = '';
-    if (item.character) {
-        role = `as ${item.character}`;
-    } else if (item.job) {
-        role = item.job;
-    }
+    if (item.character) role = `as ${item.character}`;
+    else if (item.job) role = item.job;
     
     const card = document.createElement('div');
     card.className = 'film-card';
@@ -172,15 +178,14 @@ function calculateAge(birthDate, deathDate) {
     const end = deathDate || new Date();
     let age = end.getFullYear() - birthDate.getFullYear();
     const m = end.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && end.getDate() < birthDate.getDate())) {
-        age--;
-    }
+    if (m < 0 || (m === 0 && end.getDate() < birthDate.getDate())) age--;
     return age;
 }
 
 function formatDate(dateString) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
+    return new Date(dateString).toLocaleDateString(undefined, { 
+        year: 'numeric', month: 'long', day: 'numeric' 
+    });
 }
 
 function showError(message) {
@@ -190,11 +195,13 @@ function showError(message) {
             <div class="error-state">
                 <i class="fas fa-exclamation-triangle fa-3x"></i>
                 <h2>${message}</h2>
-                <p>Please try again or go back to homepage.</p>
                 <a href="index.html" class="action-btn">Go Home</a>
             </div>
         `;
     }
 }
 
-document.addEventListener('DOMContentLoaded', loadPersonDetails);
+// Auto-load when page loads
+if (window.location.pathname.includes('person.html')) {
+    document.addEventListener('DOMContentLoaded', loadPersonDetails);
+}
