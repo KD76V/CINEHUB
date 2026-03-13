@@ -320,6 +320,11 @@ function updateVerdictCircles(reviewCounts) {
     document.getElementById('notBadPercent').textContent = percentages.notBad + '%';
     document.getElementById('goForItPercent').textContent = percentages.goForIt + '%';
     document.getElementById('cinemaPercent').textContent = percentages.cinema + '%';
+
+    // Check if we're on person page
+if (window.location.pathname.includes('person.html')) {
+    import('./person.js');
+}
 }
 
 // ========== UPDATE INITIALIZATION ==========
@@ -333,3 +338,5 @@ setupBackToTop();
 
 // Hide loading quote after page loads
 window.addEventListener('load', hideLoadingQuote);
+
+
