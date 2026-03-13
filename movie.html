@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,20 @@
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2503/2503508.png">
 </head>
 <body>
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Loading Quote Overlay -->
+    <div id="loadingQuote" class="loading-quote">
+        <div class="quote-container">
+            <i class="fas fa-film quote-icon"></i>
+            <p id="quoteText" class="quote-text"></p>
+            <span class="quote-author">- CineVerse</span>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -49,7 +63,7 @@
                 </div>
             </div>
 
-            <!-- Reviews Section (MOVED UP) -->
+            <!-- Reviews Section -->
             <section class="reviews-section">
                 <h2><i class="fas fa-comments"></i> Community Reviews</h2>
                 <div class="reviews-container">
@@ -65,6 +79,33 @@
                         <div class="stat">
                             <span class="stat-number" id="communityScore">0%</span>
                             <span class="stat-label">Community Score</span>
+                        </div>
+                    </div>
+
+                    <!-- Review Visualization (Cooler than bars) -->
+                    <div class="review-visualization">
+                        <h3><i class="fas fa-chart-pie"></i> Audience Verdict</h3>
+                        <div class="verdict-circles">
+                            <div class="verdict-circle" data-verdict="skip">
+                                <div class="circle-progress skip"></div>
+                                <span class="verdict-label">Skip</span>
+                                <span class="verdict-percent" id="skipPercent">0%</span>
+                            </div>
+                            <div class="verdict-circle" data-verdict="notBad">
+                                <div class="circle-progress not-bad"></div>
+                                <span class="verdict-label">Not Bad</span>
+                                <span class="verdict-percent" id="notBadPercent">0%</span>
+                            </div>
+                            <div class="verdict-circle" data-verdict="goForIt">
+                                <div class="circle-progress go-for-it"></div>
+                                <span class="verdict-label">Go For It</span>
+                                <span class="verdict-percent" id="goForItPercent">0%</span>
+                            </div>
+                            <div class="verdict-circle" data-verdict="cinema">
+                                <div class="circle-progress cinema"></div>
+                                <span class="verdict-label">Cinema!</span>
+                                <span class="verdict-percent" id="cinemaPercent">0%</span>
+                            </div>
                         </div>
                     </div>
 
@@ -89,7 +130,6 @@
                                     </button>
                                 </div>
                             </div>
-                            <!-- STAR RATING REMOVED -->
                             <div class="review-text">
                                 <h4>Write your review:</h4>
                                 <textarea id="reviewText" placeholder="Share your thoughts about this movie... (What worked? What didn't?)" maxlength="500"></textarea>
@@ -133,6 +173,16 @@
             </div>
         </div>
     </footer>
+
+    <!-- Movie-Specific Popup Modal -->
+    <div id="reviewPopup" class="popup-modal">
+        <div class="popup-content">
+            <i class="fas fa-film popup-icon"></i>
+            <h3 id="popupTitle"></h3>
+            <p id="popupMessage"></p>
+            <button class="popup-btn" id="closePopup">Got it</button>
+        </div>
+    </div>
 
     <script type="module" src="script.js"></script>
 </body>
